@@ -68,7 +68,7 @@ cd IoThunder
 
 # MONTAGEM DO SIMULADOR
 - **1x** Cabo USB A - **R$15,00**
-- **1x** ESP32-DevKitC V4 [**(Documentação)**](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/hw-reference/esp32/get-started-devkitc.html) - **R$50,00**
+- **1x** ESP32-DevKitC V4 [**(Documentação)**](https://docs.espressif.com/projects/arduino-esp32/en/latest/) - **R$50,00**
 - **1x** Sensor de distância ultrassônico HC-SR04 [**(Documentação)**](https://web.eece.maine.edu/zhu/book/lab/HC-SR04%20User%20Manual.pdf) - **R$13,00**
 - **1x** Sensor de umidade e temperatura (DHT22) [**(Documentação)**](https://www.mouser.com/datasheet/2/737/dht-932870.pdf?srsltid=AfmBOorSkF-0gQ-mg5eU7CV1wMu6Tfkj42UYvsNNHSDjhMDF8vXLC82A) - **R$40,00**
 - **1x** LED verde difuso de 5mm - **R$0,50**

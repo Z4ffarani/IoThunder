@@ -100,6 +100,8 @@ cd IoThunder
 
 - O EC2 (máquina virtual na AWS) utilizado no projeto permanecerá parado, sendo necessário criar uma máquina virtual rodando em outro provedor para uma aplicação IoT própria.
 
+- O endereço IP de uma máquina virtual em nuvem se altera uma vez que é parada, necessitando alterá-lo no Simulador e no MyMQTT quando reativada.
+
 <br>
 
 # TECNOLOGIAS

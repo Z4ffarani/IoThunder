@@ -13,8 +13,8 @@ const char* default_SSID = "Wokwi-GUEST";
 const char* default_PASSWORD = ""; 
 const char* default_BROKER_MQTT = "18.220.18.202";
 const int default_BROKER_PORT = 1883; 
-const char* default_TOPICO_SUBSCRIBE = "/iot/listen";
-const char* default_TOPICO_PUBLISH = "/iot/sensor";
+const char* default_TOPIC_SUBSCRIBE = "/iot/listen";
+const char* default_TOPIC_PUBLISH = "/iot/sensor";
 const char* default_ID_MQTT = "fiware_001";
 
 WiFiClient espClient;
@@ -47,7 +47,7 @@ void setup() {
   dht.begin();
   initWiFi();
   initMQTT();
-  MQTT.publish(default_TOPICO_PUBLISH, "s|on");
+  MQTT.publish(default_TOPIC_PUBLISH, "s|on");
 }
 
 void loop() {
@@ -111,7 +111,7 @@ void VerificaConexoesWiFIEMQTT() {
       Serial.print("Conectando ao broker MQTT...");
       if (MQTT.connect(default_ID_MQTT)) {
         Serial.println("Conectado ao broker MQTT!");
-        MQTT.subscribe(default_TOPICO_SUBSCRIBE);
+        MQTT.subscribe(default_TOPIC_SUBSCRIBE);
       } else {
         Serial.print("Falha ao conectar ao broker. Código de erro: ");
         Serial.println(MQTT.state());

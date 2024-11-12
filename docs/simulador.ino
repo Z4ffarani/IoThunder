@@ -51,7 +51,7 @@ void setup() {
 }
 
 void loop() {
-  VerificaConexoesWiFIEMQTT();
+  VerifyMQTTAndWifiConnection();
   publishSensorData();
   MQTT.loop();
 }
@@ -106,7 +106,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   }
 }
 
-void VerificaConexoesWiFIEMQTT() {
+void VerifyMQTTAndWifiConnection() {
   if (!MQTT.connected()) {
     while (!MQTT.connected()) {
       Serial.print("Conectando ao broker MQTT...");

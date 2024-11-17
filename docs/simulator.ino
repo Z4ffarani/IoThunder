@@ -11,7 +11,7 @@
 
 const char* default_SSID = "Wokwi-GUEST";
 const char* default_PASSWORD = ""; 
-const char* default_BROKER_MQTT = "18.220.18.202";
+const char* default_BROKER_MQTT = ""; // Adicionar endereço IP
 const int default_BROKER_PORT = 1883; 
 const char* default_TOPIC_SUBSCRIBE = "/iot/listen";
 const char* default_TOPIC_PUBLISH = "/iot/sensor";

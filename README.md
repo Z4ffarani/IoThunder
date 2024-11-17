@@ -40,7 +40,7 @@ cd IoThunder
 <br>
 
 # FUNÇÕES
-`docs/simulador.ino`:
+`docs/simulator.ino`:
 - **Inclusão de bibliotecas** | Importa as bibliotecas necessárias para a operação do ESP32 e a comunicação com os sensores, permitindo o uso de funções específicas para cada tipo de sensor conectado.
 
 - **Definição de portas de entrada** | Estabelece as portas digitais e analógicas do ESP32 que serão usadas para conectar e ler os dados dos sensores, garantindo a correta configuração do hardware.

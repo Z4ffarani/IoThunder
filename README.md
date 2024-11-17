@@ -1,6 +1,6 @@
 ![banner](./assets/banner.png)
 
-![banner-simulador](./assets/simulador.png)
+![simulator](./assets/simulator.png)
 
 ## LINKS
 - **[SIMULADOR](https://wokwi.com/projects/411876289650649089)**
@@ -62,7 +62,7 @@ cd IoThunder
 <br>
 
 # DIAGRAMA
-![DIAGRAMA](./assets/diagrama.png)
+![DIAGRAM](./assets/diagram.png)
 
 <br>
 

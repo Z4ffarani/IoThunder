@@ -10,7 +10,7 @@
 # PROJETO
 Este projeto visa conectar um simulador (montado no site Wokwi) a uma instância EC2 (máquina virtual da Amazon Web Services) com o sistema operacional Ubuntu e um repositório do GitHub clonado, que simplifica serviços da plataforma de código aberto FIWARE. O repositório apresenta contêineres Docker (aplicações de código isoladas), e para o sistema foi utilizado o Mosquitto (broker MQTT) diretamente de um contêiner Docker, viabilizando a comunicação com o simulador por meio do aplicativo MyMQTT.
 
-A estrutura do sistema IoT é baseada em três pilares principais:
+A estrutura do sistema IoT (internet das coisas) é baseada em três pilares principais:
 
 - **Simulador** | Conecta sensores e atuadores ao ESP32 (microcontrolador) e transmite os dados via protocolo de comunicação MQTT para o EC2.
 
@@ -90,9 +90,9 @@ cd IoThunder
 
 - As bibliotecas escolhidas para o simulador têm recursos ainda mais complexos para serem implementados.
 
-- É necessário alterar o endereço IP e porta do broker MQTT no simulador para que ele se conecte à máquina virtual escolhida.
+- É necessário alterar o endereço IP (protocolo de internet) e porta do broker MQTT no simulador para que ele se conecte à máquina virtual escolhida.
 
-- É essencial configurar o Mosquitto corretamente na máquina virtual para permitir a comunicação entre o simulador e o MyMQTT. Testes prévios com o Postman (plataforma de desenvolvimento de APi) ajudarão a validar dependências instaladas.
+- É essencial configurar o Mosquitto corretamente na máquina virtual para permitir a comunicação entre o simulador e o MyMQTT. Testes prévios com o Postman (plataforma de desenvolvimento de API) ajudarão a validar dependências instaladas.
 
 - Existe a possibilidade de renomear e alterar as funcionalidades dos tópicos MQTT no simulador para atender a diferentes necessidades na aplicação IoT, bem como os sensores e atuadores dispostos.
 

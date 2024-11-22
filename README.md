@@ -8,7 +8,7 @@
 <br>
 
 # PROJETO
-Este projeto visa conectar um simulador (montado no site Wokwi, um simulador de eletrônica online) a uma instância EC2 (máquina virtual da Amazon Web Services) com o sistema operacional Ubuntu e um repositório do GitHub clonado, que simplifica serviços da plataforma de código aberto FIWARE. O repositório apresenta contêineres Docker (aplicações de código isoladas), e para o sistema foi utilizado o Mosquitto (broker MQTT) diretamente de um contêiner Docker, viabilizando a comunicação com o simulador por meio do aplicativo MyMQTT.
+Este projeto visa conectar um simulador (montado no site Wokwi, um simulador de eletrônica online) a uma instância EC2 (máquina virtual da Amazon Web Services) com o sistema operacional Ubuntu e um repositório do GitHub clonado, que simplifica serviços da plataforma de código aberto FIWARE. O repositório apresenta contêineres Docker (aplicações de código isoladas), e para o sistema foi utilizado o Mosquitto (broker MQTT) diretamente de um contêiner Docker, viabilizando a comunicação com o simulador por meio do MyMQTT.
 
 A estrutura do sistema IoT (internet das coisas) é baseada em três pilares principais:
 
@@ -16,7 +16,7 @@ A estrutura do sistema IoT (internet das coisas) é baseada em três pilares pri
 
 - **EC2** | Máquina virtual, com o Ubuntu instalado, que atua como servidor para manipular e enviar dados recebidos do simulador por meio do Mosquitto.
 
-- **MyMQTT** | Aplicativo que se inscreve ou publica em tópicos MQTT (previamente estabelecidos) por meio da conexão IP (protocolo de internet) do EC2 com o simulador, permitindo o controle de seus sensores e atuadores.
+- **MyMQTT** | Aplicativo que se inscreve ou publica em tópicos MQTT (previamente estabelecidos) por meio da conexão IP do EC2 com o simulador, permitindo o controle de seus sensores e atuadores.
 
 <br>
 
@@ -33,9 +33,9 @@ cd IoThunder
 
 3. O documento `criacao-servidor-e-maquina-virtual`, localizado na pasta `docs`, informa o passo a passo necessário para criar uma máquina virtual (podendo ser tanto localmente quanto em nuvem por meio do provedor de infraestrutura de preferência), instalar o Ubuntu (distribuição Linux de preferência) e clonar o repositório do GitHub com serviços do FIWARE, configurando-os em contêineres Docker (obrigatório).
 
-4. Para rodar o simulador, seguir o link disponibilizado e clicar no botão de iniciar. Levará algum tempo até que o simulador se conecte à rede pública do Wokwi e ao EC2. É possível regular os níveis de condição relacionados aos sensores clicando neles, para que assim sejam registrados no EC2 e enviados para o MyMQTT. Para utilização do simulador físico, é necessário executar o código presente no arquivo `simulator.ino` na pasta `docs`, assim como instalar as bibliotecas dos sensores presentes na pasta `libraries`. O programa [Arduino IDE](https://www.arduino.cc/en/software) é adequado para o teste.
+4. Para rodar o simulador, seguir o link disponibilizado e clicar no botão de iniciar. Levará algum tempo até que o simulador se conecte à rede pública do Wokwi e ao EC2. É possível regular os níveis de condição relacionados aos sensores clicando neles, para que assim sejam registrados no EC2 e enviados para o MyMQTT. Para utilização do simulador físico, é necessário executar o código presente no arquivo `simulator.ino` na pasta `docs`, assim como instalar as bibliotecas dos sensores presentes na pasta `libraries`. O programa **[Arduino IDE](https://www.arduino.cc/en/software)** é adequado para o teste.
 
-5. Instalar o aplicativo [MyMQTT](https://mymqtt.app/en), ou qualquer outro que permita a conexão de endereço IP e porta 1883 de uma máquina virtual. No aplicativo, caso a mensagem de publicação (publish) no tópico MQTT `iot/listen` seja `led/on`, o LED liga no simulador e desliga com `led/off`. Se a mensagem no mesmo tópico for `buzzer/high`, o buzzer é acionado com uma frequência aguda, e com `buzzer/low`, uma frequência grave, ambas em um intervalo de 500 milissegundos.
+5. Instalar o aplicativo **[MyMQTT](https://mymqtt.app/en)**, ou qualquer outro que permita a conexão de endereço IP (protocolo de internet) e porta 1883 de uma máquina virtual. No aplicativo, caso a mensagem de publicação (publish) no tópico MQTT `iot/listen` seja `led/on`, o LED liga no simulador e desliga com `led/off`. Se a mensagem no mesmo tópico for `buzzer/high`, o buzzer é acionado com uma frequência aguda, e com `buzzer/low`, uma frequência grave, ambas em um intervalo de 500 milissegundos.
 
 <br>
 
@@ -90,7 +90,7 @@ cd IoThunder
 
 - As bibliotecas escolhidas para o simulador têm recursos ainda mais complexos para serem implementados.
 
-- É necessário alterar o endereço IP (protocolo de internet) e porta do broker MQTT no simulador para que ele se conecte à máquina virtual escolhida.
+- É necessário alterar o endereço IP e porta do broker MQTT no simulador para que ele se conecte à máquina virtual escolhida.
 
 - É essencial configurar o Mosquitto corretamente na máquina virtual para permitir a comunicação entre o simulador e o MyMQTT. Testes prévios com o Postman (plataforma de desenvolvimento de API) ajudarão a validar dependências instaladas.
 

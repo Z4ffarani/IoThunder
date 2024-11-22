@@ -8,15 +8,15 @@
 <br>
 
 # PROJETO
-Este projeto visa conectar um Simulador (montado no site Wokwi) a uma instância EC2 (máquina virtual da Amazon Web Services) com o sistema operacional Ubuntu e um repositório do GitHub clonado, que simplifica serviços da plataforma de código aberto FIWARE. O repositório apresenta contêineres Docker (aplicações de código isoladas), e para o sistema foi utilizado o Mosquitto (broker MQTT) diretamente de um contêiner Docker, viabilizando a comunicação com o Simulador por meio do aplicativo MyMQTT.
+Este projeto visa conectar um simulador (montado no site Wokwi) a uma instância EC2 (máquina virtual da Amazon Web Services) com o sistema operacional Ubuntu e um repositório do GitHub clonado, que simplifica serviços da plataforma de código aberto FIWARE. O repositório apresenta contêineres Docker (aplicações de código isoladas), e para o sistema foi utilizado o Mosquitto (broker MQTT) diretamente de um contêiner Docker, viabilizando a comunicação com o simulador por meio do aplicativo MyMQTT.
 
 A estrutura do sistema IoT é baseada em três pilares principais:
 
 - **Simulador** | Conecta sensores e atuadores ao ESP32 (microcontrolador) e transmite os dados via protocolo de comunicação MQTT para o EC2.
 
-- **EC2** | Máquina virtual, com o Ubuntu instalado, que atua como servidor para manipular e enviar dados recebidos do Simulador por meio do Mosquitto.
+- **EC2** | Máquina virtual, com o Ubuntu instalado, que atua como servidor para manipular e enviar dados recebidos do simulador por meio do Mosquitto.
 
-- **MyMQTT** | Aplicativo que se inscreve ou publica em tópicos MQTT (previamente estabelecidos) por meio da conexão IP (Internet Protocol) do EC2 com o Simulador, permitindo o controle de seus sensores e atuadores.
+- **MyMQTT** | Aplicativo que se inscreve ou publica em tópicos MQTT (previamente estabelecidos) por meio da conexão IP (protocolo de internet) do EC2 com o simulador, permitindo o controle de seus sensores e atuadores.
 
 <br>
 
@@ -33,9 +33,9 @@ cd IoThunder
 
 3. O documento `criacao-servidor-e-maquina-virtual`, localizado na pasta `docs`, informa o passo a passo necessário para criar uma máquina virtual (podendo ser tanto localmente quanto em nuvem por meio do provedor de infraestrutura de preferência), instalar o Ubuntu (distribuição Linux de preferência) e clonar o repositório do GitHub com serviços do FIWARE, configurando-os em contêineres Docker (obrigatório).
 
-4. Para rodar o Simulador, seguir o link disponibilizado e clicar no botão de iniciar. Levará algum tempo até que o Simulador se conecte à rede pública do Wokwi e ao EC2. É possível regular os níveis de condição relacionados aos sensores clicando neles, para que assim sejam registrados no EC2 e enviados para o MyMQTT. Para utilização do Simulador físico, é necessário executar o código presente no arquivo `simulator.ino` na pasta `docs`, assim como instalar as bibliotecas dos sensores presentes na pasta `libraries`. O programa [Arduino IDE](https://www.arduino.cc/en/software) é adequado para o teste.
+4. Para rodar o simulador, seguir o link disponibilizado e clicar no botão de iniciar. Levará algum tempo até que o simulador se conecte à rede pública do Wokwi e ao EC2. É possível regular os níveis de condição relacionados aos sensores clicando neles, para que assim sejam registrados no EC2 e enviados para o MyMQTT. Para utilização do simulador físico, é necessário executar o código presente no arquivo `simulator.ino` na pasta `docs`, assim como instalar as bibliotecas dos sensores presentes na pasta `libraries`. O programa [Arduino IDE](https://www.arduino.cc/en/software) é adequado para o teste.
 
-5. Instalar o aplicativo [MyMQTT](https://mymqtt.app/en), ou qualquer outro que permita a conexão de endereço IP e porta 1883 de uma máquina virtual. No aplicativo, caso a mensagem de publicação (Publish) no tópico MQTT `iot/listen` seja `led/on`, o LED liga no Simulador e desliga com `led/off`. Se a mensagem no mesmo tópico for `buzzer/high`, o Buzzer é acionado com uma frequência aguda, e com `buzzer/low`, uma frequência grave, ambas em um intervalo de 500 milissegundos.
+5. Instalar o aplicativo [MyMQTT](https://mymqtt.app/en), ou qualquer outro que permita a conexão de endereço IP e porta 1883 de uma máquina virtual. No aplicativo, caso a mensagem de publicação (publish) no tópico MQTT `iot/listen` seja `led/on`, o LED liga no simulador e desliga com `led/off`. Se a mensagem no mesmo tópico for `buzzer/high`, o buzzer é acionado com uma frequência aguda, e com `buzzer/low`, uma frequência grave, ambas em um intervalo de 500 milissegundos.
 
 <br>
 
@@ -51,13 +51,13 @@ cd IoThunder
 
 - **Constantes de tópicos MQTT** | Recebe rotas que permitirão a comunicação com o broker MQTT através de inscrição e publicação de informações.
 
-- **Funções de inicialização** | Inicia o módulo Wi-Fi do ESP32, o broker MQTT, juntamente com seus futuros tópicos e sensores do Simulador.
+- **Funções de inicialização** | Inicia o módulo Wi-Fi do ESP32, o broker MQTT, juntamente com seus futuros tópicos e sensores do simulador.
 
 - **Funções de publicação** | Permitem enviar dados dos sensores através de seus respectivos tópicos para a máquina virtual.
 
-- **Callback MQTT** | O broker MQTT traz mensagens inscritas em um tópico no MyMQTT para o Simulador. A função as interpreta por meio de códigos condicionais e executa as ações nos atuadores relacionados ao tópico.
+- **Callback MQTT** | O broker MQTT traz mensagens inscritas em um tópico no MyMQTT para o simulador. A função as interpreta por meio de códigos condicionais e executa as ações nos atuadores relacionados ao tópico.
 
-- **Funções de verificação em loop** | Verifica a conexão Wi-Fi do Simulador e a conexão com o broker MQTT, além de confirmar o status com mensagens na Serial do Simulador.
+- **Funções de verificação em loop** | Verifica a conexão Wi-Fi do simulador e a conexão com o broker MQTT, além de confirmar o status com mensagens na serial do simulador.
 
 <br>
 
@@ -82,25 +82,25 @@ cd IoThunder
 <br>
 
 # OBSERVAÇÕES 
-- Os preços dos componentes do Simulador estão sujeitos a valorização ou desvalorização.
+- Os preços dos componentes do simulador estão sujeitos a valorização ou desvalorização.
 
-- Para o Simulador físico, o uso contínuo de sensores pode resultar em um maior consumo de energia. É recomendável implementar modos de economia de energia, como intervalos de sono, para prolongar a vida útil da bateria, se o sistema for alimentado por bateria.
+- Para o simulador físico, o uso contínuo de sensores pode resultar em um maior consumo de energia. É recomendável implementar modos de economia de energia, como intervalos de sono, para prolongar a vida útil da bateria, se o sistema for alimentado por bateria.
 
-- A estabilidade da conexão Wi-Fi é fundamental para o funcionamento do sistema. Para o Simulador físico, verifique se o módulo ESP32 está dentro do alcance da rede sem fio para garantir a transmissão confiável de dados.
+- A estabilidade da conexão Wi-Fi é fundamental para o funcionamento do sistema. Para o simulador físico, verifique se o módulo ESP32 está dentro do alcance da rede sem fio para garantir a transmissão confiável de dados.
 
-- As bibliotecas escolhidas para o Simulador têm recursos ainda mais complexos para serem implementados.
+- As bibliotecas escolhidas para o simulador têm recursos ainda mais complexos para serem implementados.
 
-- É necessário alterar o endereço IP e porta do broker MQTT no Simulador para que ele se conecte à máquina virtual escolhida.
+- É necessário alterar o endereço IP e porta do broker MQTT no simulador para que ele se conecte à máquina virtual escolhida.
 
-- É essencial configurar o Mosquitto corretamente na máquina virtual para permitir a comunicação entre o Simulador e o MyMQTT. Testes prévios com o Postman ajudarão a validar dependências instaladas.
+- É essencial configurar o Mosquitto corretamente na máquina virtual para permitir a comunicação entre o simulador e o MyMQTT. Testes prévios com o Postman (plataforma de desenvolvimento de APi) ajudarão a validar dependências instaladas.
 
-- Existe a possibilidade de renomear e alterar as funcionalidades dos tópicos MQTT no Simulador para atender a diferentes necessidades na aplicação IoT, bem como os sensores e atuadores dispostos.
+- Existe a possibilidade de renomear e alterar as funcionalidades dos tópicos MQTT no simulador para atender a diferentes necessidades na aplicação IoT, bem como os sensores e atuadores dispostos.
 
 - Para a máquina virtual em nuvem, dependendo do provedor de infraestrutura escolhido, é importante averiguar valores e planos gratuitos que podem se tornar pagos antes de ativar instâncias. O término da instância após testes é recomendado para evitar cobranças inesperadas.
 
 - O EC2 utilizado no projeto permanecerá parado, sendo necessário criar uma máquina virtual rodando em outro provedor para uma aplicação IoT própria.
 
-- O endereço IP de uma máquina virtual em nuvem se altera uma vez que é parada, necessitando alterá-lo no Simulador e no MyMQTT quando reativada.
+- O endereço IP de uma máquina virtual em nuvem se altera uma vez que é parada, necessitando alterá-lo no simulador e no MyMQTT quando reativada.
 
 <br>
 
